@@ -1,14 +1,16 @@
 html {
   background-color: #e4e9fd;
-  background-image: -webkit-linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%);
+  background-image: -webkit-linear-gradient(90deg, #00ADB5 50%, #EEEEEE 50%);
   min-height: 1000px;
+  margin: 0;
+  padding: 0;
   font-family: "helvetica neue";
 }
 body {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  min-height: 95vh;
+  min-height: 100vh;
 }
 main {
   text-align: center;
@@ -17,6 +19,39 @@ main {
 h1 {
   color: #fff;
   padding: 10px;
+}
+
+.header{
+  display: flex;
+  top: 0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo{
+  font-size: 28px;
+  color: #00ADB5;
+  text-decoration: none;
+}
+
+.navbar a {
+  font-size: 18px;
+  font-weight: 200;
+  text-decoration: none;
+  margin-left: 10px;
+  color:#6b6b6b
+}
+
+.navbar a::before {
+content:'';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 2px;
+background-color: #00ADB5;
 }
 
 .box {
@@ -28,7 +63,9 @@ h1 {
 }
 
 #heading {
-  background-color: #a683e3;
+	background: linear-gradient(-60deg, #222831, #393E46, #00ADB5);
+	background-size: 400% 400%;
+	animation: gradient 7s ease infinite;
   text-align: center;
 }
 form.edit {
@@ -64,11 +101,11 @@ form {
 }
 
 button.add {
-  min-height: 50px;
-  width: 50px;
+  min-height: 40px;
+  width: 40px;
   border-radius: 50%;
   border-color: transparent;
-  background-color: #a683e3;
+  background-color: #222831;
   color: #fff;
   font-size: 30px;
   border-width: 0;
@@ -77,6 +114,7 @@ button.add {
 button.edit {
   margin-left: 0px;
   margin-right: 20px;
+  width: 40px;
   border: none;
   background: none;
 }
@@ -98,7 +136,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  box-shadow: inset 0 -3px 0 0 #a683e3;
+  box-shadow: inset 0 -3px 0 0 #222831;
 }
 
 ::placeholder {

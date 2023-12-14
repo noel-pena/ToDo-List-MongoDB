@@ -1,16 +1,16 @@
 <%- include('partials/header.ejs'); -%>
 
-  <!--header-->
-  <header class="header">
-    <a href="/" class="logo">To-do</a>
+ <!--header-->
+ <header class="header">
+  <a href="/" class="logo">To-do</a>
 
-    <nav class="navbar">
-      <a href="/">Today</a>
-      <a href="/week">Week</a>
-      <a href="/month">Month</a>
-    </nav>
+  <nav class="navbar">
+    <a href="/">Today</a>
+    <a href="/week">Week</a>
+    <a href="/month">Month</a>
+  </nav>
 
-  </header>
+</header>
 
   <div class="box" id="heading">
     <h1>
@@ -20,7 +20,7 @@
   <div class="box">
     <% for(let item of listItems){%>
       <div class="item">
-        <form action="/delete" method="post">
+        <form action="/delete-week" method="post">
           <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>">
         </form>
 
@@ -28,7 +28,7 @@
           <%= item.title %>
         </p>
 
-        <form class="edit" action="/edit" method="post">
+        <form class="edit" action="/edit-week" method="post">
           <input type="hidden" name="updatedItemId" value="<%= item.id %>">
           <input id="input<%=item.id%>" type="text" name="updatedItemTitle" value="<%= item.title %>" autocomplete="off"
             autofocus="true" hidden="true" />
@@ -40,7 +40,7 @@
       </div>
       <% } %>
 
-        <form class="item" action="/add" method="post">
+        <form class="item" action="/add-week" method="post">
           <input type="text" name="newItem" placeholder="New Item" autocomplete="off" autofocus="true" />
           <button class="add" type="submit" name="list" value=<%=listTitle %> >+</button>
         </form>

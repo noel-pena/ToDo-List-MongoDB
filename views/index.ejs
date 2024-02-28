@@ -14,18 +14,18 @@
 
   <div class="box" id="heading">
     <h1>
-      <%= listTitle %>
+      <!-- %= listTitle % -->
     </h1>
   </div>
   <div class="box">
-    <% for(let item of listItems){%>
+    <!-- % for(let item of listItems){% -->
       <div class="item">
         <form action="/delete" method="post">
-          <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>">
+          <!-- <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value=" %= item.id %"> -->
         </form>
 
-        <p id="title<%=item.id%>">
-          <%= item.title %>
+        <!-- <p id="title %=item.id% "> -->
+          <!-- %= item.title % -->
         </p>
 
         <form class="edit" action="/edit" method="post">
@@ -35,10 +35,11 @@
           <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
               src="/assets/icons/check-sm.svg" alt="tick image"></button>
         </form>
-        <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
-            src="/assets/icons/pencil.svg" alt="pencil image"></button>
+        <!-- <button id="edit%=item.id%" class="edit" onclick="handler(' %=item.id% ')"><img class="icon" -->
+            <!-- src="/assets/icons/pencil.svg" alt="pencil image"></button> -->
       </div>
-      <% } %>
+      <!-- % } % -->
+
 
         <form class="item" action="/add" method="post">
           <input type="text" name="newItem" placeholder="New Item" autocomplete="off" autofocus="true" />

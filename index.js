@@ -1,7 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import clientPromise from "./mongodb.js";
-import connectToMongoDB from "./mongodb.js";
+import { Item, connectToMongoDB } from "./mongodb.mjs";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,7 +11,26 @@ app.use(express.static("public"));
 connectToMongoDB();
 
 app.get("/", async (req, res) => {
-  res.render("index.ejs");
+  try {
+    const items = await Item.find();
+    console.log(items);
+    res.render("index.ejs", {
+      listTitle: "Today",
+      listItems: items,
+    });
+  } catch (error) {
+    console.log("Error fetching posts:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/add", async (req, res) => {
+  const itemName = req.body.newItem;
+  const item = new Item({
+    name: itemName,
+  });
+  item.save();
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {

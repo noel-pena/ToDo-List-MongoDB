@@ -1,9 +1,14 @@
-// mongodb.js
+// mongodb.mjs
 import mongoose from "mongoose";
 
-// const dbUrl = process.env.MONGODB_URI;
 const dbUrl =
   "mongodb+srv://noelpena:2365@cluster0.xbaexmf.mongodb.net/?retryWrites=true&w=majority";
+
+const itemSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+});
+
+const Item = mongoose.model("Items_today", itemSchema);
 
 async function connectToMongoDB() {
   try {
@@ -14,4 +19,4 @@ async function connectToMongoDB() {
   }
 }
 
-export default connectToMongoDB;
+export { Item, connectToMongoDB };

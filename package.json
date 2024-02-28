@@ -2,7 +2,7 @@
   "name": "5-capstone---todo-list",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.js && mongodb.cjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

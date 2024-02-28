@@ -1,58 +1,78 @@
 <%- include('partials/header.ejs'); -%>
 
-  <!--header-->
-  <header class="header">
-    <a href="/" class="logo">To-do</a>
+<!--header-->
+<header class="header">
+  <a href="/" class="logo">To-do</a>
 
-    <nav class="navbar">
-      <a href="/">Today</a>
-      <a href="/week">Week</a>
-      <a href="/month">Month</a>
-    </nav>
+  <nav class="navbar">
+    <a href="/">Today</a>
+    <a href="/week">Week</a>
+    <a href="/month">Month</a>
+  </nav>
+</header>
 
-  </header>
+<div class="box" id="heading">
+  <h1><%= listTitle %></h1>
+</div>
+<div class="box">
+  <% for(let item of listItems){%>
+  <div class="item">
+    <form action="/delete" method="post">
+      <input
+        type="checkbox"
+        onchange="this.form.submit()"
+        name="deleteItemId"
+        value="<%= item.id %>"
+      />
+    </form>
 
-  <div class="box" id="heading">
-    <h1>
-      <!-- %= listTitle % -->
-    </h1>
+    <p id="title<%=item.id%>"><%= item.title %></p>
+
+    <form class="edit" action="/edit" method="post">
+      <input type="hidden" name="updatedItemId" value="<%= item.id %>" />
+      <input
+        id="input<%=item.id%>"
+        type="text"
+        name="updatedItemTitle"
+        value="<%= item.title %>"
+        autocomplete="off"
+        autofocus="true"
+        hidden="true"
+      />
+      <button id="done<%=item.id%>" class="edit" type="submit" hidden>
+        <img class="icon" src="/assets/icons/check-sm.svg" alt="tick image" />
+      </button>
+    </form>
+    <button
+      id="edit<%=item.id%>"
+      class="edit"
+      onclick="handler('<%=item.id%>')"
+    >
+      <img class="icon" src="/assets/icons/pencil.svg" alt="pencil image" />
+    </button>
   </div>
-  <div class="box">
-    <!-- % for(let item of listItems){% -->
-      <div class="item">
-        <form action="/delete" method="post">
-          <!-- <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value=" %= item.id %"> -->
-        </form>
+  <% } %>
 
-        <!-- <p id="title %=item.id% "> -->
-          <!-- %= item.title % -->
-        </p>
+  <form class="item" action="/add" method="post">
+    <input
+      type="text"
+      name="newItem"
+      placeholder="New Item"
+      autocomplete="off"
+      autofocus="true"
+    />
+    <button class="add" type="submit" name="list" value="<%listTitle %>">
+      +
+    </button>
+  </form>
+</div>
 
-        <form class="edit" action="/edit" method="post">
-          <input type="hidden" name="updatedItemId" value="<%= item.id %>">
-          <input id="input<%=item.id%>" type="text" name="updatedItemTitle" value="<%= item.title %>" autocomplete="off"
-            autofocus="true" hidden="true" />
-          <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
-              src="/assets/icons/check-sm.svg" alt="tick image"></button>
-        </form>
-        <!-- <button id="edit%=item.id%" class="edit" onclick="handler(' %=item.id% ')"><img class="icon" -->
-            <!-- src="/assets/icons/pencil.svg" alt="pencil image"></button> -->
-      </div>
-      <!-- % } % -->
-
-
-        <form class="item" action="/add" method="post">
-          <input type="text" name="newItem" placeholder="New Item" autocomplete="off" autofocus="true" />
-          <button class="add" type="submit" name="list" value=<%=listTitle %> >+</button>
-        </form>
-  </div>
-
-  <script>
-    function handler(id) {
-      document.getElementById("title" + id).setAttribute("hidden", true)
-      document.getElementById("edit" + id).setAttribute("hidden", true)
-      document.getElementById("done" + id).removeAttribute("hidden")
-      document.getElementById("input" + id).removeAttribute("hidden")
-    }
-  </script>
-  <%- include('partials/footer.ejs'); -%>
+<script>
+  function handler(id) {
+    document.getElementById("title" + id).setAttribute("hidden", true);
+    document.getElementById("edit" + id).setAttribute("hidden", true);
+    document.getElementById("done" + id).removeAttribute("hidden");
+    document.getElementById("input" + id).removeAttribute("hidden");
+  }
+</script>
+<%- include('partials/footer.ejs'); -%>

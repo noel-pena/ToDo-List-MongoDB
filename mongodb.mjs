@@ -9,6 +9,8 @@ const itemSchema = new mongoose.Schema({
 });
 
 const Item = mongoose.model("Items_today", itemSchema);
+const Item2 = mongoose.model("Items_week", itemSchema);
+const Item3 = mongoose.model("Items_month", itemSchema);
 
 async function connectToMongoDB() {
   try {
@@ -19,4 +21,4 @@ async function connectToMongoDB() {
   }
 }
 
-export { Item, connectToMongoDB };
+export { Item, Item2, Item3, connectToMongoDB };

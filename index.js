@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { Item, Item2, Item3, connectToMongoDB } from "./mongodb.mjs";
+import { Item, Item2, Item3, connectToMongoDB } from "./mongodb.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;

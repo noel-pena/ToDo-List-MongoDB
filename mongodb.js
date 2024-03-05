@@ -1,8 +1,9 @@
-// mongodb.mjs
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const dbUrl =
-  "mongodb+srv://noelpena:2365@cluster0.xbaexmf.mongodb.net/?retryWrites=true&w=majority";
+dotenv.config();
+
+const dbUrl = process.env.MONGODB_URI;
 
 const itemSchema = new mongoose.Schema({
   title: { type: String, required: true },

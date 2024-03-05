@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 
-// dotenv.config();
-const MONGODB_URI =
-  "mongodb+srv://noelpena:1234@cluster0.xbaexmf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+dotenv.config();
 
-// const dbUrl = process.env.MONGODB_URI;
+const dbUrl = process.env.MONGODB_URI;
 
 const itemSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -17,7 +15,8 @@ const Item3 = mongoose.model("Items_month", itemSchema);
 
 async function connectToMongoDB() {
   try {
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(dbUrl),
+      { useNewUrlParser: true, ssl: true, tls: true };
     console.log("Connected to MongoDB!");
   } catch (error) {
     console.error("MongoDB connection error:", error);

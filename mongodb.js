@@ -19,7 +19,6 @@ async function connectToMongoDB() {
       {
         useNewUrlParser: true,
         ssl: true,
-        tls: true,
         useUnifiedTopology: true,
         replicaSet: "Cluster0-shard-0",
       };

@@ -16,7 +16,13 @@ const Item3 = mongoose.model("Items_month", itemSchema);
 async function connectToMongoDB() {
   try {
     await mongoose.connect(dbUrl),
-      { useNewUrlParser: true, ssl: true, tls: true };
+      {
+        useNewUrlParser: true,
+        ssl: true,
+        tls: true,
+        useUnifiedTopology: true,
+        replicaSet: "Cluster0-shard-0",
+      };
     console.log("Connected to MongoDB!");
   } catch (error) {
     console.error("MongoDB connection error:", error);

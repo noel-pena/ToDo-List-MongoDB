@@ -4,7 +4,7 @@ import cors from "cors";
 import { Item, Item2, Item3, connectToMongoDB } from "./mongodb.js";
 
 const app = express();
-const PORT = 27017;
+const PORT = 27016;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
